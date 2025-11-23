@@ -1,15 +1,29 @@
-const container = document.getElementById('container');
+function makeGrid(size) {
+  document.documentElement.style.setProperty('--grid-size', size);
 
-for (let i = 0; i < 16 * 16; i++) {
-  const cell = document.createElement('div');
-  cell.className = 'square';
-  container.appendChild(cell);
+  const container = document.getElementById('container');
+  container.innerHTML = '';
+
+  for (let i = 0; i < size * size; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'square';
+    cell.addEventListener('mouseenter', () => {
+      cell.style.backgroundColor = 'black';
+    });
+    container.appendChild(cell);
+  }
 }
 
-const squares = document.querySelectorAll('.square');
+makeGrid(16);
 
-squares.forEach((square) => {
-  square.addEventListener('mouseenter', () => {
-    square.style.backgroundColor = 'black';
-  });
+document.getElementById('resizeButton').addEventListener('click', () => {
+  let newSize = prompt('Enter grid size (max 100):');
+  newSize = Number(newSize);
+
+  if (newSize > 100 || newSize < 1 || Number.isNaN(newSize)) {
+    alert('Invalid size');
+    return;
+  }
+
+  makeGrid(newSize);
 });

@@ -2,11 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   width: 640px;
-  margin: 20px auto;
+  margin: auto;
 }
 
 .square {
-  flex: 0 0 calc(100% / 16);
+  flex: 0 0 calc(100% / var(--grid-size));
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
   border: 1px solid #ddd;
